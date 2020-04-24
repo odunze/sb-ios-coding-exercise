@@ -10,9 +10,30 @@ struct Recommendation: Codable {
     var imageURL: String
     var title: String
     var tagline: String
-    var rating: Float
+    var rating: Float?
     var isReleased: Bool
+
+    enum CodingKeys: String, CodingKey {
+        case imageURL = "image"
+        case title
+        case tagline
+        case rating
+        case isReleased = "is_released"
+    }
 }
+
+struct Titles: Codable {
+    let titles: [Recommendation]
+    let skipped: [String]
+    let titlesOwned: [String]
+
+    enum CodingKeys: String, CodingKey {
+        case titles
+        case skipped
+        case titlesOwned = "titles_owned"
+    }
+}
+
 
 class RecommendationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -51,9 +72,9 @@ class RecommendationsViewController: UIViewController, UITableViewDataSource, UI
             do {
                 
                 let jsonDecoder = JSONDecoder()
-                let json = try jsonDecoder.decode([Recommendation].self, from: receivedData)
+                let json = try jsonDecoder.decode(Titles.self, from: receivedData)
                 
-                self.recommendations = json
+                self.recommendations = json.titles
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
