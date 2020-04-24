@@ -16,6 +16,8 @@ struct Recommendation {
 
 class RecommendationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    var vm: RecommendationsViewModel = RecommendationsViewModel()
+    
     @IBOutlet weak var tableView: UITableView!
     
     var recommendations = [Recommendation]()
@@ -112,10 +114,25 @@ class RecommendationsViewController: UIViewController, UITableViewDataSource, UI
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recommendations.count
+        if vm.showTopTen() {
+            return vm.topTen.count
+        } else {
+            return recommendations.count
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 134
+    }
+}
+
+class RecommendationsViewModel {
+    
+    private var shouldShowTopTen: Bool = false
+    
+    var topTen: [Recommendation] = []
+    
+    func showTopTen() -> Bool {
+        return shouldShowTopTen
     }
 }
