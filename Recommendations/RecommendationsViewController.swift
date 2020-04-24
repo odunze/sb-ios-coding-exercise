@@ -41,7 +41,6 @@ class RecommendationsViewController: UIViewController, UITableViewDataSource, UI
     
     @IBOutlet weak var tableView: UITableView!
     
-    var recommendations = [Recommendation]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +73,7 @@ class RecommendationsViewController: UIViewController, UITableViewDataSource, UI
                 let jsonDecoder = JSONDecoder()
                 let json = try jsonDecoder.decode(Titles.self, from: receivedData)
                 
-                self.recommendations = json.titles
+                self.vm.titles = json
                 
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -91,7 +90,7 @@ class RecommendationsViewController: UIViewController, UITableViewDataSource, UI
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! RecommendationTableViewCell
         
-        let recommendation = recommendations[indexPath.row]
+        let recommendation = vm.recommendations[indexPath.row]
 
         cell.titleLabel.text = recommendation.title
         cell.taglineLabel.text = recommendation.tagline
@@ -113,7 +112,7 @@ class RecommendationsViewController: UIViewController, UITableViewDataSource, UI
         if vm.showTopTen() {
             return vm.topTen.count
         } else {
-            return recommendations.count
+            return vm.recommendations.count
         }
     }
     
@@ -123,6 +122,16 @@ class RecommendationsViewController: UIViewController, UITableViewDataSource, UI
 }
 
 class RecommendationsViewModel {
+    
+    var recommendations = [Recommendation]()
+
+    var titles: Titles? {
+        didSet {
+            if let titles = titles {
+                recommendations = titles.titles
+            }
+        }
+    }
     
     private var shouldShowTopTen: Bool = false
     
