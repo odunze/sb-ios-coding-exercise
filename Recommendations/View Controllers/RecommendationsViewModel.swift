@@ -52,7 +52,7 @@ class RecommendationsViewModel {
     private func buildTopTenList(ratedTitles: [Recommendation]) -> [Recommendation] {
         var list: [Recommendation] = []
         
-        let sortedList = ratedTitles.sorted(by: { $0.rating!.isLess(than: $1.rating!) } )
+        let sortedList = ratedTitles.sorted(by: { !($0.rating!.isLess(than: $1.rating!)) } )
         
         for index in 0 ..< 10 {
             list.append(sortedList[index])
