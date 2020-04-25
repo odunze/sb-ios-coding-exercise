@@ -13,6 +13,8 @@ class RecommendationsViewModel {
     var showTopTen: Bool = false
 
     var recommendations: [Recommendation] = []
+    var skipped: [String] = []
+    var owned: [String] = []
     var topTen: [Recommendation] = []
     
     var titles: Titles? {
@@ -21,7 +23,9 @@ class RecommendationsViewModel {
             if let titles = titles {
                 
                 recommendations = titles.titles
-                
+                skipped = titles.skipped
+                owned = titles.titlesOwned
+                                
                 let ratedReleases = recommendations.filter {
                     
                     guard let rating = $0.rating else { return false }
@@ -52,9 +56,12 @@ class RecommendationsViewModel {
     private func buildTopTenList(ratedTitles: [Recommendation]) -> [Recommendation] {
         var list: [Recommendation] = []
         
-        let sortedList = ratedTitles.sorted(by: { !($0.rating!.isLess(than: $1.rating!)) } )
+        var sortedList = ratedTitles.sorted(by: { !($0.rating!.isLess(than: $1.rating!)) } )
+        
+        sortedList.removeAll( where: { (skipped.contains($0.title)) || (owned.contains($0.title)) } )
         
         for index in 0 ..< 10 {
+            
             list.append(sortedList[index])
         }
         
