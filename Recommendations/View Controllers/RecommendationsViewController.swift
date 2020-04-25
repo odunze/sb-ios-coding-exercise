@@ -21,6 +21,13 @@ class RecommendationsViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.estimatedRowHeight = 174
+        tableView.rowHeight = UITableView.automaticDimension
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

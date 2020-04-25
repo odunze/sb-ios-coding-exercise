@@ -17,11 +17,7 @@ extension RecommendationsViewController: UITableViewDataSource, UITableViewDeleg
                 return vm.recommendations.count
             }
         }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 134
-        }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! RecommendationTableViewCell
         
