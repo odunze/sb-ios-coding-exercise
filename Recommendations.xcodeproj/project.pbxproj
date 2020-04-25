@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C26B6832453BE9D002F1F5B /* Titles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C26B6822453BE9D002F1F5B /* Titles.swift */; };
+		4C26B6852453BEEF002F1F5B /* RecommendationsVC+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C26B6842453BEEF002F1F5B /* RecommendationsVC+TableView.swift */; };
+		4C26B68A2453C10E002F1F5B /* RecommendationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C26B6892453C10E002F1F5B /* RecommendationsViewModel.swift */; };
 		7A7852F4244F410900651421 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7852F3244F410900651421 /* AppDelegate.swift */; };
 		7A7852F8244F410900651421 /* RecommendationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7852F7244F410900651421 /* RecommendationsViewController.swift */; };
 		7A7852FB244F410900651421 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A7852F9244F410900651421 /* Main.storyboard */; };
@@ -23,6 +26,9 @@
 		023FD0B1C204B2A9FD2FFC15 /* Pods-Recommendations.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recommendations.debug.xcconfig"; path = "Target Support Files/Pods-Recommendations/Pods-Recommendations.debug.xcconfig"; sourceTree = "<group>"; };
 		296F577824B62DA31BB5053D /* Pods-Recommendations.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recommendations.release.xcconfig"; path = "Target Support Files/Pods-Recommendations/Pods-Recommendations.release.xcconfig"; sourceTree = "<group>"; };
 		4837A2CE5DC84736E4DD6D1B /* libPods-Recommendations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Recommendations.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C26B6822453BE9D002F1F5B /* Titles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Titles.swift; sourceTree = "<group>"; };
+		4C26B6842453BEEF002F1F5B /* RecommendationsVC+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RecommendationsVC+TableView.swift"; sourceTree = "<group>"; };
+		4C26B6892453C10E002F1F5B /* RecommendationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsViewModel.swift; sourceTree = "<group>"; };
 		7A7852F0244F410900651421 /* Recommended.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recommended.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A7852F3244F410900651421 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A7852F7244F410900651421 /* RecommendationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +54,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C26B6862453C05F002F1F5B /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7A7852F7244F410900651421 /* RecommendationsViewController.swift */,
+				4C26B6842453BEEF002F1F5B /* RecommendationsVC+TableView.swift */,
+				4C26B6892453C10E002F1F5B /* RecommendationsViewModel.swift */,
+				4C26B6872453C084002F1F5B /* Views */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		4C26B6872453C084002F1F5B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7A87BB3A244F5C38008A8669 /* RecommendationTableViewCell.swift */,
+				7A87BB3B244F5C38008A8669 /* RecommendationTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4C26B6882453C0CF002F1F5B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4C26B6822453BE9D002F1F5B /* Titles.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		5FC35D115BB62EA5CDF6C48B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -87,9 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				7A87BB42244F9A1F008A8669 /* Do Not Modify These Files */,
-				7A7852F7244F410900651421 /* RecommendationsViewController.swift */,
-				7A87BB3A244F5C38008A8669 /* RecommendationTableViewCell.swift */,
-				7A87BB3B244F5C38008A8669 /* RecommendationTableViewCell.xib */,
+				4C26B6882453C0CF002F1F5B /* Model */,
+				4C26B6862453C05F002F1F5B /* View Controllers */,
 				7A7852F9244F410900651421 /* Main.storyboard */,
 				7A7852FC244F410B00651421 /* Assets.xcassets */,
 				7A7852FE244F410B00651421 /* LaunchScreen.storyboard */,
@@ -207,10 +240,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C26B68A2453C10E002F1F5B /* RecommendationsViewModel.swift in Sources */,
 				7A87BB3C244F5C38008A8669 /* RecommendationTableViewCell.swift in Sources */,
 				7A7852F8244F410900651421 /* RecommendationsViewController.swift in Sources */,
+				4C26B6852453BEEF002F1F5B /* RecommendationsVC+TableView.swift in Sources */,
 				7A7852F4244F410900651421 /* AppDelegate.swift in Sources */,
 				7A87BB41244F9A19008A8669 /* Stub.swift in Sources */,
+				4C26B6832453BE9D002F1F5B /* Titles.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
