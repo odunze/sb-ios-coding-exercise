@@ -12,10 +12,9 @@ class RecommendationsViewController: UIViewController {
         
     @IBOutlet weak var tableView: UITableView!
     
-    @IBAction func topTenButtonTapped(_ sender: UIBarButtonItem) {
+    @IBAction func toggleButtonTapped(_ sender: UIBarButtonItem) {
         vm.showTopTen.toggle()
-        navigationItem.title = "Top Ten Recommendations"
-
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -26,6 +25,7 @@ class RecommendationsViewController: UIViewController {
         
         tableView.estimatedRowHeight = 174
         tableView.rowHeight = UITableView.automaticDimension
+        
     }
     
     override func viewDidLoad() {

@@ -23,10 +23,10 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jyl-4E-Q1h">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
-                                    <navigationItem title="Serial Box Titles" id="W3S-LV-lIX">
-                                        <barButtonItem key="rightBarButtonItem" title="Top Ten" id="NJe-7R-jsw">
+                                    <navigationItem title="Serial Box" id="W3S-LV-lIX">
+                                        <barButtonItem key="rightBarButtonItem" title="Toggle" id="NJe-7R-jsw">
                                             <connections>
-                                                <action selector="topTenButtonTapped:" destination="BYZ-38-t0r" id="7OT-WI-h5S"/>
+                                                <action selector="toggleButtonTapped:" destination="BYZ-38-t0r" id="Ocy-nn-3Us"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
