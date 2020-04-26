@@ -22,15 +22,21 @@ extension RecommendationsViewController: UITableViewDataSource, UITableViewDeleg
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! RecommendationTableViewCell
         
         let recommendation = vm.getRecommendation(at: indexPath.row)
-        
+
         cell.titleLabel.text = recommendation.title
         cell.taglineLabel.text = recommendation.tagline
         cell.ratingLabel.text = recommendation.rated
-        
-        DispatchQueue.main.async {
-            cell.recommendationImageView?.image = self.vm.getImage(for: recommendation)
-        }
-        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        if let cell = cell as? RecommendationTableViewCell  {
+            let recommendation = vm.getRecommendation(at: indexPath.row)
+            
+            DispatchQueue.main.async {
+                cell.recommendationImageView?.image = self.vm.getImage(for: recommendation)
+            }
+        }
     }
 }

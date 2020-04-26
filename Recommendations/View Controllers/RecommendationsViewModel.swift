@@ -12,7 +12,7 @@ class RecommendationsViewModel {
     
     private let imageCache = NSCache<NSString, UIImage>()
     
-    var showTopTen: Bool = false
+    var showTopTen: Bool = true
 
     lazy var recommendations: [Recommendation] = []
     lazy var skipped: [String] = []
