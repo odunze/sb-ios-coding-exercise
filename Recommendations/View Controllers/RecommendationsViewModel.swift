@@ -6,16 +6,18 @@
 //  Copyright © 2020 Serial Box. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class RecommendationsViewModel {
     
+    private let imageCache = NSCache<NSString, UIImage>()
+    
     var showTopTen: Bool = false
 
-    var recommendations: [Recommendation] = []
-    var skipped: [String] = []
-    var owned: [String] = []
-    var topTen: [Recommendation] = []
+    lazy var recommendations: [Recommendation] = []
+    lazy var skipped: [String] = []
+    lazy var owned: [String] = []
+    lazy var topTen: [Recommendation] = []
     
     var titles: Titles? {
         
@@ -43,25 +45,47 @@ class RecommendationsViewModel {
         return showTopTen
     }
     
-    func displayRecommendation(at: Int) -> Recommendation {
+    func getRecommendation(at index: Int) -> Recommendation {
         if shouldShowTopTen() {
-            let recommendation = topTen[at]
+            let recommendation = topTen[index]
             return recommendation
         } else {
-            let recommendation = recommendations[at]
+            let recommendation = recommendations[index]
             return recommendation
         }
     }
     
+    func getImage(for recommendation: Recommendation) -> UIImage? {
+        if let cachedImage = imageCache.object(forKey: recommendation.imageURL as NSString) {
+            return cachedImage
+            
+        } else {
+            return loadImage(for: recommendation)
+        }
+       }
+    
+    private func loadImage(for recommendation: Recommendation) -> UIImage? {
+        
+        guard let url = URL(string: recommendation.imageURL),
+            let imageData = try? Data(contentsOf: url),
+            let image = UIImage(data: imageData) else {
+                return nil
+        }
+        
+        let imageKey = recommendation.imageURL as NSString
+        imageCache.setObject(image, forKey: imageKey)
+        
+        return image
+    }
+    
     private func buildTopTenList(ratedTitles: [Recommendation]) -> [Recommendation] {
+        
         var list: [Recommendation] = []
         
         var sortedList = ratedTitles.sorted(by: { !($0.rating!.isLess(than: $1.rating!)) } )
-        
         sortedList.removeAll( where: { (skipped.contains($0.title)) || (owned.contains($0.title)) } )
         
         for index in 0 ..< 10 {
-            
             list.append(sortedList[index])
         }
         

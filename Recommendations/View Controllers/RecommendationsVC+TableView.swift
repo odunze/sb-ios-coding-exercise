@@ -21,19 +21,14 @@ extension RecommendationsViewController: UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! RecommendationTableViewCell
         
-        let recommendation = vm.displayRecommendation(at: indexPath.row)
+        let recommendation = vm.getRecommendation(at: indexPath.row)
         
         cell.titleLabel.text = recommendation.title
         cell.taglineLabel.text = recommendation.tagline
-        cell.ratingLabel.text = "Rating: \(recommendation.rating)"
+        cell.ratingLabel.text = recommendation.rated
         
-        if let url = URL(string: recommendation.imageURL) {
-            let data = try? Data(contentsOf: url)
-            
-            if let imageData = data {
-                let image = UIImage(data: imageData)
-                cell.recommendationImageView?.image = image
-            }
+        DispatchQueue.main.async {
+            cell.recommendationImageView?.image = self.vm.getImage(for: recommendation)
         }
         
         return cell

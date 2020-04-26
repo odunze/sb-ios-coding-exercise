@@ -14,6 +14,14 @@ struct Recommendation: Codable {
     var tagline: String
     var rating: Float?
     var isReleased: Bool
+    
+    var rated: String {
+        if let rating = rating {
+            return "Rating: \(rating)"
+        } else {
+            return "Unrated"
+        }
+    }
 
     enum CodingKeys: String, CodingKey {
         case imageURL = "image"
